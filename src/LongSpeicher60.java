@@ -86,17 +86,17 @@ class LongSpeicher60 extends AbstractLongSpeicher {
       // convert("[]")             ist gleich ""
       // convert("[10]")           ist gleich "10"
       // convert("[20, 30, 10]")   ist gleich "20, 30, 10"
-      String string = s;
-      if(s.length() >= 2) string = s.substring(1, s.length() - 1);
-      return string; 
+      
+      if(s.length() < 2) return "Error";
+      return s.substring(1, s.length() - 1);
    }
 
    // ---------------------------------------------------------------------
    @Override
    public boolean fuegeEin(long n) {
       // Fuegt n in diesen Speicher ein und liefert true.
-      zustaendigeListe(n).fuegeEin(n);
-      return true; 
+      
+      return zustaendigeListe(n).fuegeEin(n);
    }
 
    // ---------------------------------------------------------------------
@@ -104,15 +104,15 @@ class LongSpeicher60 extends AbstractLongSpeicher {
    public boolean loesche(long n) {
       // Entfernt n aus diesem Speicher, und liefert true.
       // Liefert false falls n nicht in diesem Speicher vorkommt.
-      if(!zustaendigeListe(n).istDrin(n)) return false; 
-      zustaendigeListe(n).loesche(n);
-      return true;
+      
+      return zustaendigeListe(n).loesche(n);
    }
 
    // ---------------------------------------------------------------------
    @Override
    public boolean istDrin(long n) {
       // Liefert true wenn n in diesem Speicher vorkommt, und sonst false.
+      
       return zustaendigeListe(n).istDrin(n);
    }
 
